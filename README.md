@@ -53,6 +53,7 @@ FormGoodnessBundle
     - modalform.after_modal_show
  
  - bind to a modalform event like 
+ 
         $([trigger selector]).modalForm({
             title: 'Formgoodness is awesome!!!'
         }).bind('modalform.post_success', function(){
