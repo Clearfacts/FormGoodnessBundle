@@ -14,6 +14,6 @@
     "autoload": {
         "psr-0": { "Tactics\\Bundle\\ConfigBundle": "" }
     },
-    "target-dir": "Tactics/Bundle/FormGoodnessBundle",
+    "target-dir": "Tactics/",
     "minimum-stability": "dev"
 }
