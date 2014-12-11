@@ -2,18 +2,23 @@
     $.fn.modalForm = function (options) {
         //Trigger the modal form
         var $this = $(this);
-        var modalId = Math.floor(Math.random() * (10000 - 1)) + 1
-        var defaults = {
-            data_url: $this.attr('href'),
-            submit_selector: ':submit',
-            title: '',
-            modal_id: modalId
-        };
 
-        var mergedOptions = $.extend(defaults, options);
+        var modalId = Math.floor(Math.random() * (10000 - 1)) + 1
+
         $this.click(function(e){
+            var defaults = {
+                data_url: $(this).attr('href'),
+                submit_selector: ':submit',
+                title: '',
+                modal_id: modalId
+            };
+
+            var mergedOptions = $.extend(defaults, options);
+
             e.preventDefault();
             buildFormModal(mergedOptions, $(this));
+
+            $(this).addClass('no-modal-form');
         });
 
         return $this;
