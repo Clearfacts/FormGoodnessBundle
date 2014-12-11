@@ -78,7 +78,8 @@
 
         //show the modal
         trigger.trigger('modalform.before_modal_show');
-        container.closest('.modal').modal('show').bind('hide', function(){$(this).remove();});
+        container.closest('.modal').modal({backdrop: 'static'});
+        container.closest('.modal').modal('show').bind('hide.bs.modal', function(){$(this).remove();});
         trigger.trigger('modalform.after_modal_show');
         modalDialog.ttSpin('show', 'isModal');
         submitBtn.attr('disabled', 'disabled');
