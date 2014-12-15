@@ -19,7 +19,7 @@
             buildFormModal(mergedOptions, $(this));
 
             $(this).addClass('no-modal-form');
-        });
+        }).addClass('no-modal-form');;
 
         return $this;
     };
