@@ -59,10 +59,11 @@
             method: "GET",
             beforeSend: function() {
                 container.html('');
+                trigger.trigger('modalform.before_modal_show');
             },
             success: function(html) {
-                trigger.trigger('modalform.form_html_success');
                 container.html(html);
+                trigger.trigger('modalform.form_html_success');
                 // if btn of type submit -> preventDefault will not work
                 submitBtn = $(submitBtnSelector);
                 submitBtn.click(function(e){
@@ -73,14 +74,15 @@
                 container.find('form').triggerDynamicFormElements();
                 modalDialog.ttSpin('hide', 'isModal');
                 submitBtn.removeAttr('disabled');
+            },
+            complete: function() {
+                trigger.trigger('modalform.after_modal_show');
             }
         });
 
         //show the modal
-        trigger.trigger('modalform.before_modal_show');
         container.closest('.modal').modal({backdrop: 'static'});
         container.closest('.modal').modal('show').bind('hide.bs.modal', function(){$(this).remove();});
-        trigger.trigger('modalform.after_modal_show');
         modalDialog.ttSpin('show', 'isModal');
         submitBtn.attr('disabled', 'disabled');
     }
