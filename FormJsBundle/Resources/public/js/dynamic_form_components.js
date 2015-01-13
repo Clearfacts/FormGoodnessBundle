@@ -1,16 +1,21 @@
 +function ($) {
     $.fn.triggerDynamicFormElements = function()
     {
-        $(this).find('.datepicker').each(function () {
-            console.log('found data');
-            createDatePicker($(this));
-        });
+        if(typeof createDatePicker == 'function') {
+            $(this).find('.datepicker').each(function () {
+                createDatePicker($(this));
+            });
+        }
 
-        $(this).find('.timepicker').each(function () {
-            createTimePicker($(this));
-        });
+        if(typeof createTimePicker == 'function') {
+            $(this).find('.timepicker').each(function () {
+                createTimePicker($(this));
+            });
+        }
 
-        $(this).find('select.chosen').chosen();
+        if(typeof $(this).find('select.chosen').chosen == 'function') {
+            $(this).find('select.chosen').chosen();
+        }
 
         $(this).find('.tactics-datetime-group div[class*="col-md-2"]')
             .removeClass('col-xs-2')

@@ -74,7 +74,9 @@
                     return false;
                 });
                 container.find('form').triggerDynamicFormElements();
-                modalDialog.ttSpin('hide', 'isModal');
+                if(typeof modalDialog.ttSpin == 'function') {
+                    modalDialog.ttSpin('hide', 'isModal');
+                }
                 submitBtn.removeAttr('disabled');
             },
             complete: function() {
@@ -85,7 +87,9 @@
         //show the modal
         container.closest('.modal').modal({backdrop: 'static'});
         container.closest('.modal').modal('show').bind('hide.bs.modal', function(){$(this).remove();});
-        modalDialog.ttSpin('show', 'isModal');
+        if(typeof modalDialog.ttSpin == 'function') {
+            modalDialog.ttSpin('show', 'isModal');
+        }
         submitBtn.attr('disabled', 'disabled');
     }
     

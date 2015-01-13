@@ -7,7 +7,9 @@ $.fn.refreshContainer = function (url) {
     $.ajax({
         url: url,
         beforeSend: function(){
-            container.ttSpin('show')
+            if(typeof container.ttSpin == 'function') {
+                container.ttSpin('show')
+            }
         },
         success: function(html) {
             container.html(html);
@@ -18,7 +20,9 @@ $.fn.refreshContainer = function (url) {
             container.trigger('refresh.finished');
         },
         always: function(){
-            container.ttSpin('hide');
+            if(typeof container.ttSpin == 'function') {
+                container.ttSpin('hide');
+            }
         }
     });
 
