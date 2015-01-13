@@ -8,6 +8,7 @@
         $this.click(function(e){
             var defaults = {
                 data_url: $(this).attr('href'),
+                request_data: function(){},
                 submit_selector: ':submit',
                 title: '',
                 modal_id: modalId
@@ -57,6 +58,7 @@
         $.ajax({
             url: options.data_url,
             method: "GET",
+            data: options.request_data(),
             beforeSend: function() {
                 container.html('');
                 trigger.trigger('modalform.before_modal_show');

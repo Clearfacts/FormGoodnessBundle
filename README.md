@@ -39,6 +39,7 @@ FormGoodnessBundle
     - possible options are 
         - title: the modal title
         - data_url: the url for getting the form html (default the trigger href attribute)
+        - request_data: extra data you want to send along with the request on triggering the modalform, should be a callback function that returns valid request data (p.e. JSON)
         - submit_selector: the selector that triggers the form submission (default btn with type submit inside the returned html )
         - modal_id: id used for rendered modal
     
