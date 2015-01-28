@@ -66,6 +66,7 @@
             success: function(html) {
                 container.html(html);
                 trigger.trigger('modalform.form_html_success');
+                $('.cancelbutton').attr('data-dismiss', 'modal');
                 // if btn of type submit -> preventDefault will not work
                 submitBtn = $(submitBtnSelector);
                 submitBtn.click(function(e){
