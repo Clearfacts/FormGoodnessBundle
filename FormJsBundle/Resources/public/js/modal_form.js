@@ -35,13 +35,13 @@
             form.serialize(),
             function(data) {
                 if(data.hasOwnProperty('error')) {
-                    $(trigger).trigger('modalform.post_error');
+                    $(trigger).trigger('modalform.post_error', data);
                     form.mapErrors(data.error);
                     handleErrors();
                 }else {
-                    $(trigger).trigger('modalform.post_success');
+                    $(trigger).trigger('modalform.post_success', data);
                     modal.modal('hide');
-                    trigger.trigger('modalform.after_modal_hide');
+                    trigger.trigger('modalform.after_modal_hide', data);
                 }
             }
         );
