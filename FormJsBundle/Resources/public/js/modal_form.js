@@ -11,7 +11,8 @@
                 request_data: function(){},
                 submit_selector: ':submit',
                 title: '',
-                modal_id: modalId
+                modal_id: modalId,
+                cache: true
             };
 
             var mergedOptions = $.extend(defaults, options);
@@ -59,6 +60,7 @@
             url: options.data_url,
             method: "GET",
             data: options.request_data(),
+            cache: options.cache,
             beforeSend: function() {
                 container.html('');
                 trigger.trigger('modalform.before_modal_show');
