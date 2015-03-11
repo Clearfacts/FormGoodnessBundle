@@ -12,7 +12,7 @@
                 submit_selector: ':submit',
                 title: '',
                 modal_id: modalId,
-                cache: true
+                cache: false
             };
 
             var mergedOptions = $.extend(defaults, options);
