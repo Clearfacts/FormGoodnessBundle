@@ -1,13 +1,13 @@
 +function ($) {
-    $.fn.mapErrors = function (errors) {
+    $.fn.mapErrors = function (errors, title) {
         var form = $(this);
-
+        var errorTitle = title ? title : 'There are some errors, please correct them below.';
         var error = $([
             '<div class="alert alert-block alert-danger">',
             '<button class="close" data-dismiss="alert" type="button">×</button>',
             '<i class="fa fa-warning"></i>&nbsp',
-            '<strong>There are some errors, please correct them below.</strong>',
-            '</div>',
+            '<strong>' + errorTitle + '</strong>',
+            '</div>'
         ].join(''));
 
         form.prepend(error);

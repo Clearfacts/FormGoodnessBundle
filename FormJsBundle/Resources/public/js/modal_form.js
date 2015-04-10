@@ -21,27 +21,36 @@
             buildFormModal(mergedOptions, $(this));
 
             $(this).addClass('no-modal-form');
-        }).addClass('no-modal-form');;
+        }).addClass('no-modal-form');
 
         return $this;
     };
 
-    function handleSubmit(form, trigger, modal)
+    function handleSubmit(options)
     {
-        form.removeErrors();
+        var defaults = {};
+        var settings = $.extend(defaults, options);
+        $.each(['form', 'trigger', 'modal'], function(index, requiredSetting) {
+            if(settings[requiredSetting] == undefined)
+            {
+                throw new Error(requiredSetting + ' option must be set.')
+            }
+        });
+
+        settings.form.removeErrors();
         //post the data
         $.post(
-            form.attr('action'),
-            form.serialize(),
+            settings.form.attr('action'),
+            settings.form.serialize(),
             function(data) {
                 if(data.hasOwnProperty('error')) {
-                    $(trigger).trigger('modalform.post_error', data);
-                    form.mapErrors(data.error);
+                    $(settings.trigger).trigger('modalform.post_error', data);
+                    settings.form.mapErrors(data.error, settings.error_msg);
                     handleErrors();
                 }else {
-                    $(trigger).trigger('modalform.post_success', data);
-                    modal.modal('hide');
-                    trigger.trigger('modalform.after_modal_hide', data);
+                    $(settings.trigger).trigger('modalform.post_success', data);
+                    settings.modal.modal('hide');
+                    settings.trigger.trigger('modalform.after_modal_hide');
                 }
             },
             'json'
@@ -69,12 +78,16 @@
             success: function(html) {
                 container.html(html);
                 trigger.trigger('modalform.form_html_success');
-                $('.cancelbutton').attr('data-dismiss', 'modal');
                 // if btn of type submit -> preventDefault will not work
                 submitBtn = $(submitBtnSelector);
                 submitBtn.click(function(e){
                     e.preventDefault();
-                    handleSubmit(container.find('form').first(), trigger, $('#' + options.modal_id));
+                    handleSubmit({
+                        form: container.find('form').first(),
+                        trigger: trigger,
+                        modal: $('#' + options.modal_id),
+                        error_msg: options.error_msg
+                    });
                     return false;
                 });
                 container.find('form').triggerDynamicFormElements();
