@@ -14,7 +14,10 @@
 
         $.each(errors, function(index, value) {
 
-            if(form.find('#' + index).length > 0) {
+            if(form.attr('id') == index) {
+                form.find('.alert-block').append('<br/>' + value);
+            }
+            else if(form.find('#' + index).length > 0) {
                 form.find('#' + index)
                     .addClass('error')
                     .closest('.form-group')
