@@ -43,7 +43,8 @@
                     modal.modal('hide');
                     trigger.trigger('modalform.after_modal_hide', data);
                 }
-            }
+            },
+            'json'
         );
     }
 
