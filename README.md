@@ -42,6 +42,7 @@ FormGoodnessBundle
         - request_data: extra data you want to send along with the request on triggering the modalform, should be a callback function that returns valid request data (p.e. JSON)
         - submit_selector: the selector that triggers the form submission (default btn with type submit inside the returned html )
         - modal_id: id used for rendered modal
+        - error_msg: the general error message displayed at the top of your form. (default: There are some errors, please correct them below.)
     
 
 ##### 4.1 binding to modal form events 
