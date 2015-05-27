@@ -79,8 +79,7 @@
                 container.html(html);
                 trigger.trigger('modalform.form_html_success');
                 // if btn of type submit -> preventDefault will not work
-                submitBtn = $(submitBtnSelector);
-                submitBtn.click(function(e){
+                container.find('form').first().on('submit', function(e){
                     e.preventDefault();
                     handleSubmit({
                         form: container.find('form').first(),
