@@ -8,9 +8,6 @@
         "name": "Jeroen Meert",
         "email": "jeroen@tactics.be"
     }],
-    "require": {
-        "symfony/symfony": "~2.3"
-    },
     "autoload": {
         "psr-0": { "Tactics\\FormJsBundle": "" }
     },
