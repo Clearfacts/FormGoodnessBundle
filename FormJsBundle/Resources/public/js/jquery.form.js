@@ -13,7 +13,6 @@
         form.prepend(error);
 
         $.each(errors, function(index, value) {
-
             if(form.attr('id') == index) {
                 form.find('.alert-block').append('<br/>' + value);
             }
@@ -32,11 +31,15 @@
                     .append('<span class="help-block help-block-error"><br /><br />' + value + '</span>');
             }
 
-            form.find('label[for="' + index + '"]')
-                .next('div')
-                .append('<span class="help-block help-block-error">' + value + '</span>');
+            var errormsg = '<span class="help-block help-block-error">' + value + '</span>';
+            var errorlabel =  form.find('#' + index)
+                .closest('.form-group')
+                .find('label');
+
+            errorlabel.next('div').append(errormsg);
+            errorlabel.next('input').after(errormsg);
         });
-    }
+    };
 
     $.fn.removeErrors = function () {
         var form = $(this);
