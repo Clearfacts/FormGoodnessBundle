@@ -69,7 +69,7 @@
         $.ajax({
             url: options.data_url,
             method: "GET",
-            data: options.request_data(),
+            data: options.request_data(trigger),
             cache: options.cache,
             beforeSend: function() {
                 container.html('');
