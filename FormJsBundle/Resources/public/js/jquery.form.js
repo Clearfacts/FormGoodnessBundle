@@ -30,7 +30,10 @@
                     .find('label')
                     .next('div')
                     .append('<span class="help-block help-block-error"><br /><br />' + value + '</span>');
+            } else {
+                form.find('.alert-block').append('<br/>' + value);
             }
+
 
             form.find('label[for="' + index + '"]')
                 .next('div')
