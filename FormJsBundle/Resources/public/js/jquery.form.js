@@ -4,7 +4,7 @@
         var errorTitle = title ? title : 'There are some errors, please correct them below.';
         var error = $([
             '<div class="alert alert-block alert-danger">',
-            '<button class="close" data-dismiss="alert" type="button">×</button>',
+            '<button class="close" data-dismiss="alert" type="button">&times;</button>',
             '<i class="fa fa-warning"></i>&nbsp',
             '<strong>' + errorTitle + '</strong>',
             '</div>'

@@ -39,7 +39,7 @@ function handleErrors()
     function showErrorPanel() {
         var paneHtml = '' +
             '<div class="alert alert-block alert-danger">' +
-                '<a class="close" data-dismiss="alert" href="#">×</a>' +
+                '<a class="close" data-dismiss="alert" href="#">&times;</a>' +
                     '<strong><i style="color: #953B39" class="fa fa-warning"></i>&#32;There are some errors, please correct these.</strong> '
             '</div>'
         ;
