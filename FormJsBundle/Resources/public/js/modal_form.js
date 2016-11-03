@@ -38,23 +38,25 @@
         });
 
         settings.form.removeErrors();
-        //post the data
-        $.post(
-            settings.form.attr('action'),
-            settings.form.serialize(),
-            function(data) {
-                if(data.hasOwnProperty('error')) {
-                    $(settings.trigger).trigger('modalform.post_error', data);
-                    settings.form.mapErrors(data.error, settings.error_msg);
-                    handleErrors();
-                }else {
-                    $(settings.trigger).trigger('modalform.post_success', data);
-                    settings.modal.modal('hide');
-                    settings.trigger.trigger('modalform.after_modal_hide');
-                }
-            },
-            'json'
-        );
+        if(settings.confirmationMessage && confirm(settings.confirmationMessage)) {
+            //post the data
+            $.post(
+                settings.form.attr('action'),
+                settings.form.serialize(),
+                function(data) {
+                    if(data.hasOwnProperty('error')) {
+                        $(settings.trigger).trigger('modalform.post_error', data);
+                        settings.form.mapErrors(data.error, settings.error_msg);
+                        handleErrors();
+                    }else {
+                        $(settings.trigger).trigger('modalform.post_success', data);
+                        settings.modal.modal('hide');
+                        settings.trigger.trigger('modalform.after_modal_hide');
+                    }
+                },
+                'json'
+            );
+        }
     }
 
     function buildFormModal(options, trigger)
@@ -69,7 +71,7 @@
         $.ajax({
             url: options.data_url,
             method: "GET",
-            data: options.request_data(trigger),
+            data: options.request_data(),
             cache: options.cache,
             beforeSend: function() {
                 container.html('');
@@ -79,13 +81,15 @@
                 container.html(html);
                 trigger.trigger('modalform.form_html_success');
                 // if btn of type submit -> preventDefault will not work
-                container.find('form').first().on('submit', function(e){
+                submitBtn = $(submitBtnSelector);
+                submitBtn.click(function(e){
                     e.preventDefault();
                     handleSubmit({
                         form: container.find('form').first(),
                         trigger: trigger,
                         modal: $('#' + options.modal_id),
-                        error_msg: options.error_msg
+                        error_msg: options.error_msg,
+                        confirmationMessage: options.confirmationMessage
                     });
                     return false;
                 });
