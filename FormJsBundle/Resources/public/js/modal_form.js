@@ -38,7 +38,7 @@
         });
 
         settings.form.removeErrors();
-        if(settings.confirmationMessage && confirm(settings.confirmationMessage)) {
+        if(!settings.confirmationMessage || confirm(settings.confirmationMessage)) {
             //post the data
             $.post(
                 settings.form.attr('action'),
