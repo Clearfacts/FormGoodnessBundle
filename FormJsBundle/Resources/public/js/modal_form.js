@@ -39,6 +39,7 @@
 
         settings.form.removeErrors();
         if(settings.confirmationMessage && confirm(settings.confirmationMessage)) {
+            $(settings.trigger).trigger('modalform.pre_post');
             //post the data
             $.post(
                 settings.form.attr('action'),
